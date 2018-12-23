@@ -9,8 +9,10 @@ import requests
 from bs4 import BeautifulSoup
 import os
 import numpy as np
+from datetime import datetime, timedelta
 
 ticker_list = [x.strip() for x in open("F:\\System\\PVWAVE\\Crypto\\tickers.txt", "r").readlines()]
+yesterday_parameter = datetime.strftime(datetime.now() - timedelta(1), '%m/%d/%Y')
 
 print("Number of tickers: ", len(ticker_list))
 
@@ -20,9 +22,9 @@ for ticker in ticker_list:
         postData = {
             "curr_id" : "49799",
             "smlID" : "145284",
-            "header" : "BTC%2FUSD+Kraken+Historical+Data",
-            "st_date" : "06%2F01%2F2016",
-            "end_date" : "12%2F22%2F2018",
+            "header" : "BTC/USD+Kraken+Historical+Data",
+            "st_date" : "06/01/2016",
+            "end_date" : yesterday_parameter,
             "interval_sec" : "Daily",
             "sort_col" : "date",
             "sort_ord" : "DESC"
@@ -45,9 +47,9 @@ for ticker in ticker_list:
          postData = {
             "curr_id" : "997651",
             "smlID" : "145284",
-            "header" : "ETH%2FUSD+Kraken+Historical+Data",
-            "st_date" : "06%2F01%2F2016",
-            "end_date" : "12%2F22%2F2018",
+            "header" : "ETH/USD+Kraken+Historical+Data",
+            "st_date" : "06/01/2016",
+            "end_date" : yesterday_parameter,
             "interval_sec" : "Daily",
             "sort_col" : "date",
             "sort_ord" : "DESC"
